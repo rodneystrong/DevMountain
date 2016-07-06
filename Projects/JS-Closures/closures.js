@@ -95,29 +95,28 @@ motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
 // Inside the return create a publicMethod property that is a function that invokes privateMethod. After you create the privateMethod
 // Invoke it by calling module.publicMethod(); outside the module scope
 
-  var module = (function() {
-    var person = {
-      name: "phillip",
-      age: 29,
-      location: 'Utah'
-    };
+var module = (function() {
+  var person = {
+    name: "phillip",
+    age: 29,
+    location: 'Utah'
+  };
 
-    var privateMethod = function(){
-      return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
-    };
+  var privateMethod = function(){
+    return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
+  };
 
-    // Anything that is being returned is made public and can be invoked from outside our lexical scope
+  // Anything that is being returned is made public and can be invoked from outside our lexical scope
 
-    return {
-      // Code here.
-    };
+  return {
+    publicMethod: function() {
+      return privateMethod();
+    }
+  };
 
-  })();
+})();
 
-//Uncomment this after you create your public method
-//   module.publicMethod();
-
-
+module.publicMethod();
 
 //////////////////PROBLEM 7////////////////////
 // Here we have a for loop that will iterate as long as i is less than or equal to 5. What we need to do is console.log(i)
