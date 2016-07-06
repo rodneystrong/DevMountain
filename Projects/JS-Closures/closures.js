@@ -16,7 +16,6 @@ inner();
 
 //////////////////PROBLEM 2////////////////////
 
-
 var callFriend = function(){
   var friend = 'Jake';
   function callF(number){
@@ -24,12 +23,12 @@ var callFriend = function(){
   }
   return callF;
 };
-
-
 // Above you're given a callFriend function that returns another function.
 // Create a makeCall function that when invoked logs  'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+function makeCall(func) {
+  console.log(func);
+}
 
 
 
