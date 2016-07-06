@@ -125,25 +125,23 @@ module.publicMethod();
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000)
-  }
-
-  function newScope(i) {
-    console.log(i)
+    (function newScope(i) {
+      setTimeout((function() {
+        console.log(i);
+      }), i * 1000);
+    })(i);
   }
 }
 timeOutCounter();
-  // To make this code work you will need to create a new scope for every iteration.
-
-
-
-
 
 //////////////////PROBLEM 8////////////////////
-
 var funcArray = [];
+
+for(var i = 0; i < 6; i++) {
+  (function pushToArray(j) {
+  	funcArray.push( function() { return j; } );
+  })(i);
+}
 
 /*
   Make the following code work
