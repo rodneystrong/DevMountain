@@ -30,34 +30,27 @@ function makeCall(func) {
   console.log(func);
 }
 
-
-
-
-
-
-
 //////////////////PROBLEM 3////////////////////
+//Write a function called makeCounter that makes the following code work properly.
 
-
-
-/*
-  Write a function called makeCounter that makes the following code work properly.
-*/
-
-//Code Here
+function makeCounter() {
+  var num = 0;
+  return function() {
+    num++;
+    return num;
+  };
+}
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 
 
 //////////////////PROBLEM 4////////////////////
-
-
 // Inside the function called counterFactory
 // return two functions that implement up/down counter.
 // The first function is called inc, this function is responsible for incrementing the value once
@@ -66,22 +59,23 @@ function makeCall(func) {
 
 function counterFactory(value) {
 
-  // Code here.
-
+  var num = value;
 
   return {
-  }
+    inc: function() {
+      num++;
+      return num;
+    },
+    dec: function() {
+      num--;
+      return num;
+    }
+  };
 }
-
 
 counter = counterFactory(10);
 
-
-
-
 //////////////////PROBLEM 5////////////////////
-
-
 // Inside the motivation function create another function called message that will return 'You're doing awesome, keep it up firstname lastname.'
 
   function motivation(firstname, lastname){
