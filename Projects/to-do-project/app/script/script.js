@@ -37,10 +37,49 @@ $('document').ready(function() {
     }
   };
 
-  $saveNewItem.on('click', function() {
+  var advanceTask = function(task) {
+    var modified = task.innerText.trim();
+    for (var i = 0; i < taskList.length; i++) {
+      if (taskList[i].task === modified) {
+        if (taskList[i].id === 'new') {
+          taskList[i].id = 'inProgress';
+        } else if (taskList[i].id === 'inProgress') {
+          taskList[i].id = 'archived';
+        } else {
+          taskList.splice(i, 1);
+        }
+        break;
+      }
+    }
+    task.remove();
+  };
+
+  $(document).on('click', '#item', function(e) {
     e.preventDefault();
+    var task = this;
+    advanceTask(task);
+    this.id = 'inProgress';
+    $('#currentList').append(this.outerHTML);
+  });
+
+  $(document).on('click', '#inProgress', function (e) {
+    e.preventDefault();
+    var task = this;
+    task.id = "archived";
+    var changeIcon = task.outerHTML.replace('glyphicon-arrow-right', 'glyphicon-remove');
+    advanceTask(task);
+    $('#archivedList').append(changeIcon);
+  });
+
+  $saveNewItem.on('click', function() {
     var task = $newItemInput.val().trim();
-    addTask();
+    addTask(task);
+  });
+
+  $(document).on('click', '#archived', function (e) {
+    e.preventDefault();
+    var task = this;
+    advanceTask(task);
   });
 
   $addTodo.on('click', function() {
