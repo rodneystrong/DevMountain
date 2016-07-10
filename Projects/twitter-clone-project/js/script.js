@@ -90,7 +90,8 @@ $('document').ready(function() {
   });
 
   $postedTweet.hover(function() {
-    
+    console.log(this);
+    $(this + '> .tweet-actions').toggleClass('hide');
   });
 
   $tweetBtn.prop('disabled', true);
